@@ -63,6 +63,24 @@ img {
       .end-content {
         height: 100%;
         background: url(../public/asset/OVWR_WebBG.jpg) no-repeat;
+        overflow: hidden;
+        display: flex;
+        padding-top: 40px;
+        align-items: flex-start;
+        position: relative;
+        img {
+          width: 100%;
+          &.logo {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            top: 0;
+          }
+          position: relative;
+          max-width: 1200px;
+        }
       }
     }
     span {
@@ -75,6 +93,27 @@ img {
       }
       img {
         width: 100%;
+      }
+    }
+  }
+}
+@media (max-width: 1000px) {
+  .section {
+    .video {
+      .JoL-player-container {
+        .end-content {
+          padding: 40px;
+          img {
+            top: auto !important;
+            // position: absolute;
+            bottom: 0;
+            margin: auto;
+            &.logo {
+              top: 0 !important;
+              bottom: auto !important;
+            }
+          }
+        }
       }
     }
   }

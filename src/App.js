@@ -9,7 +9,13 @@ import { MouseParallax } from "react-just-parallax";
 import { JolPlayer } from "jol-player";
 
 function EndContent() {
-  return <div className="end-content"></div>;
+  return (
+    <div className="end-content">
+      <h1>Overworld</h1>
+      <img className="logo" src="asset/logo.png" />
+      <img src="asset/OVWR_MaleCharacter-2.png" />
+    </div>
+  );
 }
 function App() {
   React.useEffect(() => {
