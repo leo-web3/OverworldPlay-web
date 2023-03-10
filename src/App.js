@@ -1,23 +1,73 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.scss";
+import { Player } from "video-react";
+import React from "react";
+import ReactFullpage from "@fullpage/react-fullpage";
+import Members from "./pages/Members";
+import Header from "./components/Header";
+import { MouseParallax } from "react-just-parallax";
+import { JolPlayer } from "jol-player";
 
+function EndContent() {
+  return <div className="end-content"></div>;
+}
 function App() {
+  React.useEffect(() => {
+    var promise = document.querySelector("video").play();
+
+    if (promise !== undefined) {
+      promise
+        .then((_) => {
+          // Autoplay started!
+        })
+        .catch((error) => {
+          // Autoplay was prevented.
+          // Show a "Play" button so that user can start playback.
+        });
+    }
+  });
+  const handleClickPlay = () => {};
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <ReactFullpage
+        //fullpage options
+        licenseKey={"YOUR_KEY_HERE"}
+        scrollingSpeed={1000} /* Options here */
+        render={({ state, fullpageApi }) => {
+          return (
+            <ReactFullpage.Wrapper>
+              <div className="section">
+                <div className="video">
+                  <JolPlayer
+                    option={{
+                      mode: "heightFix",
+                      autoPlay: true,
+                      setEndPlayContent: <EndContent />,
+                      videoSrc: "asset/video.mp4",
+                      language: "en",
+                      isProgressFloat: false,
+                      isShowPauseButton: false,
+                      isToast: false,
+                      isShowSet: false,
+                      isShowScreenshot: false,
+                      isShowPicture: false,
+                      isShowWebFullScreen: false,
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="section">
+                <img src="asset/img4.jpeg" />
+                <img src="asset/img5.jpeg" />
+              </div>
+              <div className="section">
+                <Members />
+              </div>
+            </ReactFullpage.Wrapper>
+          );
+        }}
+      />
     </div>
   );
 }
